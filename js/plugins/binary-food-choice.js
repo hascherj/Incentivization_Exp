@@ -136,14 +136,22 @@ jsPsych.plugins["binary-food-choice"] = (function () {
           setTimeoutHandlers.push(response_timer);
         }
       };
-  
+  if (response.key == 70) {
+    var choseLeft = 1;
+  } else if (response.key == 74) {
+    var choseLeft = 0;
+  }
       var end_trial = function (timeout) {
         // data saving
         var trial_data = {
-          "stimulus": trial.stimulus,
+          "stimulus1": trial.stimulus.stimulus1,
+          "stimulus2": trial.stimulus.stimulus2,
+          "stimulus1Rat": trial.stimulus.stimulus1_rating,
+          "stimulus2Rat": trial.stimulus.stimulus2_rating,
           "timeout": timeout,
           "rt": response.rt,
           "key_press": response.key,
+          "choseLeft": choseLeft,
           "choices": trial.choices,
           "trial_number": trial.trial_number
         };

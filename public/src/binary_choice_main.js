@@ -208,11 +208,14 @@ var healthy_first = jsPsych.randomization.sampleWithoutReplacement([0, 1], 1);
 /////////////////////////
 /** Add Subject Info **/
 ////////////////////////
+var RatingConds = ["BR", "WTP", "FP"];
+var RatingCondition = RatingConds[Math.floor(Math.random() * RatingConds.length)];
+
 jsPsych.data.addProperties({
   subject: subject_id,
   date: DATE,
   subid_date: subject_id + DATE,
-  healthy_side: healthy_side,
+  condition: RatingCondition,
 });
 
 //////////////////////
@@ -304,10 +307,8 @@ var instructions_Welcome = {
 /** Ratings */
 //////////////
 
-var RatingConds = ["BR", "WTP", "FP"];
-//var RatingCondition = RatingConds[Math.floor(Math.random() * RatingConds.length)];
+
 //Remember to change this - used to test instructions / rewards
-var RatingCondition = "BR";
 if (RatingCondition == "BR") {
   var instructions_Ratings = {
     data: {
@@ -869,12 +870,11 @@ var post_choices = {
         window.rewardObj = jsPsych.randomization.sampleWithoutReplacement(rewardData, 1)[0]; //Select a random rating trial
         window.auctionVal = Math.random()*4.01; //Returns random number in [0,4.01)
         window.buyDiff = parseFloat(rewardObj.rating) - auctionVal;
+        window.foodReward = rewardObj.stimulus;
         if (buyDiff >= 0) {
           window.buy = true;
-          window.foodReward = rewardObj.stimulus;
         } else {
           window.buy = false;
-          window.rewardhtml = auctionVal;
         }
       }
     }
@@ -890,11 +890,14 @@ var choiceRewardScreen = { //If their choices determine their reward
       on_load: function rewardType() {
         document.getElementById('img').src += foodReward;
       },
-    choices: [32] //spacebar
+    choices: [32], //spacebar
+    on_finish: function reward() {
+      jsPsych.data.addProperties({reward: foodReward})
+    }
 }
 var choiceReward = {
   timeline: [choiceRewardScreen],
-  cconditional_function: function () {
+  conditional_function: function () {
     if (rewardTask == "choice") {
       return true;
     } else {
@@ -912,7 +915,10 @@ var fpRewardScreen = {
       on_load: function rewardType() {
         document.getElementById('img').src += foodReward;
       },
-    choices: [32] //spacebar
+    choices: [32], //spacebar
+    on_finish: function reward() {
+      jsPsych.data.addProperties({reward: foodReward})
+    }
 }
 var fpReward = {
   timeline: [fpRewardScreen],
@@ -927,22 +933,27 @@ var fpReward = {
 
 var wtpRewardScreen = { //If their WTP for a random food determines thier reward
 type: "html-keyboard-response",
-    stimulus: "<div id = price> The following food was randomly chosen to be auctioned off at a random price of:</div>" +
+    stimulus: "<div id = price> The following food was randomly chosen to be auctioned off at a random price of $</div>" +
               "<div id = wtp>Your reported willingness to pay for this food was:</div>" +
-              "<div id = buy>Therefore, you will</div>" +
+              "<div id = buy>Therefore, you will </div>" +
               "<div style = 'float: center;'>" +
               "<img id = 'img' style = 'width: 350px; height: 350px;'></img></div>" +
       "Press the spacebar to continue.",
       on_load: function rewardType() {
-        document.getElementById('price').textContent += toString(auctionVal);
-        document.getElementById('wtp').textContent += toString(rewardObj.rating);
+        document.getElementById('price').textContent += num.toString(Math.round(auctionVal*100)/100);
+        document.getElementById('wtp').textContent += rewardObj.rating;
+        document.getElementById('img').src += foodReward;
+        window.moneyReward = num.toString(Math.round(buyDiff*100)/100);
         if(buy == true) {
-          document.getElementById('buy').textContent += "buy the item at that price and receive any money leftover from your $4 budget.";
+          document.getElementById('buy').textContent += "buy the item at that price and receive the $" + moneyReward + " leftover from your $4 budget.";
         } else {
           document.getElementById('buy').textContent += "not buy the item and keep the entirety of your $4 budget.";
         }
       },
-    choices: [32] //spacebar
+    choices: [32], //spacebar
+    on_finish: function reward() {
+      jsPsych.data.addProperties({reward: moneyReward})
+    }
     }
 var wtpReward = {
   timeline: [wtpRewardScreen],
