@@ -91,7 +91,7 @@ jsPsych.plugins['rating-scale'] = (function() {
       button_label_skip: {
         type: jsPsych.plugins.parameterType.STRING,
         pretty_name: 'Button label',
-        default:  'Disklike',
+        default:  'Dislike',
         array: false,
         description: 'Label of the button to skip.'
       },
