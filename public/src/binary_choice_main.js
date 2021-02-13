@@ -702,11 +702,7 @@ var halfway_break = {
 var break_node = {
   timeline: [halfway_break],
   conditional_function: function () {
-    if (choice_count % 100 == 0) {
-      return true;
-    } else {
-      return false;
-    }
+    return (choice_count % 100 == 0 && choice_count != 0);
   }
 }
 
