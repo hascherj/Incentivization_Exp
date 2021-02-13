@@ -151,7 +151,7 @@ jsPsych.plugins['survey-text'] = (function() {
       // create object to hold responses
       var question_data = {};
 
-      var worker_id = document.querySelector('#jspsych-survey-text-1').querySelector('textarea, input'); 
+      //var worker_id = document.querySelector('#jspsych-survey-text-1').querySelector('textarea, input'); 
       
       for(var index=0; index < trial.questions.length; index++){
         var id = "Q" + index;
@@ -168,8 +168,7 @@ jsPsych.plugins['survey-text'] = (function() {
       // save data
       var trialdata = {
         "rt": response_time,
-        "survey_responses": JSON.stringify(question_data),
-        "worker_id": worker_id,
+        "survey_responses": JSON.stringify(question_data)
       };
 
       display_element.innerHTML = '';

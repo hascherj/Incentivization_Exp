@@ -15,11 +15,11 @@
 /////////////////
 /** Constants **/
 /////////////////
-const ntrials = 30; //150 trials (in each phase)
+const ntrials = 15; //150 trials (in each phase)
 const npractice = 3; //3
 const do_practice = 0; //to test code
 const fixation_duration = 500; //half sec
-const nRatings = 15; //number of ratings (max 80)
+const nRatings = 10; //number of ratings (max 80)
 
 //date constants
 var TODAY = new Date();
@@ -50,7 +50,7 @@ downloadCSV = function (csv, filename) {
 
 function makeSurveyCode(status) {
   var suffix = {
-    'bad_ratings': 'R1P1',
+    'bad_ratings': 'R1',
     'pass_all': 'P5'
   }[status]
   return `${subject_id}${suffix}`;
@@ -296,7 +296,8 @@ var instructions_Welcome = {
     screen_id: "welcome"
   },
   type: 'instructions',
-  pages: ["In this study, you will be making a series of decisions about foods.<br/><br/>" +
+  pages: ["In this study, you will be making a series of decisions about foods. At the end of the study you may be randomly<br/>" +
+    "selected to receive a shipment of food based on one of your choices. One in ten participants will be selected.<br/><br/>" +
     "There will be multiple parts to the study, and you will receive instructions before each new part.<br/><br/> " +
     "Please press the spacebar to continue."],
   allow_backward: false,
@@ -308,7 +309,6 @@ var instructions_Welcome = {
 //////////////
 
 
-//Remember to change this - used to test instructions / rewards
 if (RatingCondition == "BR") {
   var instructions_Ratings = {
     data: {
@@ -317,15 +317,16 @@ if (RatingCondition == "BR") {
     type: "instructions",
     pages: ["First, you will make decisions about a series of foods one by one.<br/>" +
       "Then, in the second part of the study, you will be making choices between pairs of foods.<br/>At the end of the study " +
-      "the food you receive will depend on your choices from the second part of the study.<br/>" +
-      "It is therefore important to try to be as accurate as possible throughout the entire study.<br/>" +
+      "you may receive a food based on your choices from the second part of the study, selected at random.<br/>" +
+      "Therefore, it is therefore important to try to be as accurate as possible throughout the entire study.<br/>" +
       "Press the spacebar to continue.",
 
-    "We are asking you to rate each food based on how much you would like to eat the food.<br/><br/>" +
+    "We are asking you to rate each food based on how much you would like to eat it.<br/><br/>" +
     "Rate each food on a scale from 0 to 4.<br/><br/>" +
     "4 means that you would really like to eat it<br/>" +
     "0 means you would neither like nor dislike to eat it.<br/>" +
     'If you would not want to eat it, then click the "Would Not Eat" button.',
+
     "Use the mouse to click on the scale to indicate your rating.<br/>" +
     "You will automatically progress to the next food.<br/><br/>" +
     "Press the spacebar when you are ready to begin.",
@@ -341,36 +342,19 @@ if (RatingCondition == "BR") {
     type: "instructions",
     pages: ["First, you will make decisions about a series of foods one by one.<br/>" +
       "Then, in the second part of the study, you will be making choices between pairs of foods.<br/>At the end of the study " +
-      "the food you receive will depend on your choices from one of the parts of the study, selected at random.<br/>" +
-      "It is therefore important to try to be as accurate as possible throughout the entire study.<br/>" +
+      "you may receive a food based on one of your choices in the study, selected at random.<br/>" +
+      "Therefore, it is important to try to be as accurate as possible throughout the entire study.<br/>" +
       "Press the spacebar to continue.",
 
-    "We are asking you to report how much you would be willing to pay to eat each food.<br/><br/>" +
-    "If this task is randomly selected to determine your reward, ONE of the foods will be randomly selected and<br/>" +
-    "an auction will be played out. You will have a budget of $4 to spend on each food.<br/>" +
-    "Note that, since we will only sell you at most one food, you do not have to worry about spreading your $4 budget over the different items.<br/>" +
-    "Every trial you should ask yourself how much of the $4 you want to spend on that food since it may be the only one that you are given a chance to buy.<br/>" +
-    "In every auction there is a rule that determines the price at which the items are sold. This auction is no different.<br/>" +
-    "The rule is a bit unusual, but its implications are straightforward.<br/>" +
+    "We are asking you to report how much you would be willing to pay to receive each food, in the form of a bid.<br/><br/>" +
+    "Indicate your bid for each food on a scale from $0 to $4, or click the 'Would Not Eat' button. If this task is randomly selected to determine</br>" +
+    "your reward, ONE of the foods will be randomly selected, along with a random price from $0 to $4 in $0.01 increments.<br/>" +
     "Press the spacebar to continue.",
 
-    "There is no way of gaming the auction, the BEST thing that you can do in every trial is to ask yourself how much you would be<br/>willing to pay to eat THAT item at the end of the experiment, and then bid the number closest to that value.<br/>" +
-    "What is the rule? At the end of the experiment, after the trial that counts has been selected, we will draw a ball from an urn with four hundred and one (401) balls.<br/>" +
-    "The balls are marked $0.00, $0.01, $0.02, and so on up to $4.00.<br/>" +
-    "If your bid is greater than or equal to the ball that you draw, you will get the snack for a price equal to the number in the ball.<br/>" +
-    "If your bid is less than the number that you draw, you will NOT get the snack, and will not have to pay anything.<br/>" +
-    "Press the spacebar to continue.",
-
-    "Why is it in your interest to bid the number closes to your true value for eating the item at the end of the experiment?<br/>" +
-    "You might think that your best strategy is to bid less than the item is worth to you. This is INCORRECT.<br/>" +
-    "The price that you pay is determined by the ball that you draw and NOT by your bid. Thus, if you lower your bid you would not<br/>be able to affect the price that you pay, but might end up losing the opportunity to buy the item at a 'good' price.<br/><br/>" +
-    "For example, suppose that having the chance to eat the snack at the end the experiment is worth $2 for you.<br/>" +
-    "If you bid your true value, you will get the item if the ball is $0.00, $0.01, or any ball up to $2 and pay that price.<br/>" +
-    "You will not get the item if the ball is $2.01, $2.02, or any ball above $2.00.<br/>" +
-    "It follows that by bidding your true value you make a 'profit' since you always end up paying less than (or equal to what) the item is worth to you.<br/>" +
-    "Clearly, you should never bid more than your true value. What happens if you bid less than you true value?<br/>" +
-    "For example, suppose that you bid $0 even though your true value is $2. In this case you never get the item, which is not a good strategy<br/>" +
-    "since, when you bid your true value, you always end up paying less than the item is worth to you.<br/>" +
+    "If your bid is greater than or equal to the random price, you will get the food for that price.</br>" +
+    "If your bid is less than the random price, you will NOT get the food, and will not have to pay anything.</br>" +
+    "These rules ensure that it is in your best interest to bid your true willingness to pay for each food,</br>" +
+    "since you can’t affect the price of the food, you can only decide what prices are acceptable to you.</br>" +
     "Press the spacebar to continue.",
 
     "Use the mouse to click on the scale to indicate your rating.<br/>" +
@@ -388,15 +372,20 @@ if (RatingCondition == "BR") {
     type: "instructions",
     pages: ["First, you will make decisions about a series of foods one by one.<br/>" +
       "Then, in the second part of the study, you will be making choices between pairs of foods.<br/>At the end of the study " +
-      "the food you receive will depend on your choices from one of the parts of the study, selected at random.<br/>" +
-      "It is therefore important to try to be as accurate as possible throughout the entire study.<br/>" +
+      "you may receive a food based on one of your choices in the study, selected at random.<br/>" +
+      "Therefore, it is important to try to be as accurate as possible throughout the entire study.<br/>" +
       "Press the spacebar to continue.",
 
-    "We are asking you to rate each food based on how much you would like to eat the food.<br/><br/>" +
+    "We are asking you to rate each food based on how much you would like to receive it.<br/><br/>" +
     "Rate each food on a scale from 0 to 4.<br/><br/>" +
     "4 means that you would really like to eat it<br/>" +
     "0 means you would neither like nor dislike to eat it.<br/>" +
     'If you would not want to eat it, then click the "Would Not Eat" button.',
+
+    "If this task is randomly selected to determine your reward, a random pair of these foods</br>" +
+    "will be selected and you will receive the food that you rated higher.  If there is a tie, one</br>" +
+    'of the foods will be chosen at random. If you selected “Would Not Eat” for both foods, you will not receive any food.',
+
     "Use the mouse to click on the scale to indicate your rating.<br/>" +
     "You will automatically progress to the next food.<br/><br/>" +
     "Press the spacebar when you are ready to begin.",
@@ -446,6 +435,7 @@ var negative_rating_counter_healthy = 0;
 var negative_rating_counter_unhealthy = 0;
 var negative_rating_counter = 0;
 var rating_counter = 0;
+var ratings_good = 1;
 
 
 var ratings = {
@@ -489,9 +479,10 @@ var ratings = {
         };
 
         if (negative_rating_counter > 30) {
-          closeFullscreen();
-          survey_code = makeSurveyCode('bad_ratings');
-          jsPsych.endExperiment(endofExp(survey_code));
+          //closeFullscreen();
+          //survey_code = makeSurveyCode('bad_ratings');
+          //jsPsych.endExperiment(endofExp(survey_code));
+          ratings_good = 0;
         };
         //Comment this part out
         /*
@@ -661,8 +652,8 @@ if (RatingCondition == "BR") {
     type: "instructions",
     pages: ["Now you can move on to the real choices.<br/><br/>" +
       "Imagine that you are in a shop and you are choosing between the two foods presented to you.<br/>" +
-      "Remember, one of these choices will randomly be drawn to determine your reward.<br/><br/>" +
-      "Please press the spacebar to continue to the choices."
+      "Remember, the food you choose in one of the rounds may be shipped to you after the study.<br/><br/>" +
+      "Press the spacebar to continue to the choices."
     ],
     allow_backward: false,
     key_forward: 'spacebar'
@@ -675,8 +666,8 @@ if (RatingCondition == "BR") {
     type: "instructions",
     pages: ["Now you can move on to the real choices.<br/><br/>" +
       "Imagine that you are in a shop and you are choosing between the two foods presented to you.<br/>" +
-      "Remember, there is a 50% chance that one of these choices will randomly be drawn to determine your reward.<br/><br/>" +
-      "Please press the spacebar to continue to the choices."
+      "Remember, the food you choose in one of the rounds may be shipped to you after the study.<br/><br/>" +
+      "Press the spacebar to continue to the choices."
     ],
     allow_backward: false,
     key_forward: 'spacebar'
@@ -689,19 +680,19 @@ if (RatingCondition == "BR") {
     type: "instructions",
     pages: ["Now you can move on to the real choices.<br/><br/>" +
       "Imagine that you are in a shop and you are choosing between the two foods presented to you.<br/>" +
-      "Remember, there is a 50% chance that one of these choices will randomly be drawn to determine your reward.<br/><br/>" +
-      "Please press the spacebar to continue to the choices."
+      "Remember, the food you choose in one of the rounds may be shipped to you after the study.<br/><br/>" +
+      "Press the spacebar to continue to the choices."
     ],
     allow_backward: false,
     key_forward: 'spacebar'
   }
 }
 
-//Comment this part out
-/*
+
+
 var halfway_break = {
   type: 'html-keyboard-response',
-  stimulus: `<div>You are halfway done with this part of the study! Now you can take a short break if you want.
+  stimulus: `<div>You may take a short break if you want.
              <br></br>
              When you are ready to continue the study, press the spacebar.</div>`,
   choices: ['spacebar'],
@@ -711,15 +702,15 @@ var halfway_break = {
 var break_node = {
   timeline: [halfway_break],
   conditional_function: function () {
-    if (choice_count_phase1 == ntrials / 2) {
+    if (choice_count % 100 == 0) {
       return true;
     } else {
       return false;
     }
   }
 }
-*/
-//Down to here
+
+
 
 ////////////////
 /** Phase 1 */
@@ -811,6 +802,7 @@ var trials_order = jsPsych.randomization.shuffle(Array.from(Array(ntrials).keys(
 var choice_count = 0;
 var choices = {
   timeline: [
+    break_node,
     fixation,
     {
       type: "binary-food-choice",
@@ -826,6 +818,13 @@ var choices = {
 }
 
 
+// REWARDS
+var reward_trial = {
+  reward_chosen: 0,
+  choice_type: "",
+  trial_number: "",
+  food_reward: ""
+}
 
 
 if (RatingCondition == "FP" || RatingCondition == "WTP") {
@@ -840,7 +839,7 @@ if (RatingCondition == "FP" || RatingCondition == "WTP") {
 
 var post_choices = {
   type: "html-keyboard-response",
-  stimulus: "<div id = 'type'>You have completed the second part of the study. A random </div> round was drawn to determine your reward.<br/>" +
+  stimulus: "<div id = 'type'> A random </div> round was drawn to determine your reward.<br/>" +
     "Press the spacebar to find out your reward.",
   choices: [32], //spacebar
   on_load: function rewardType() {
@@ -892,7 +891,7 @@ var choiceRewardScreen = { //If their choices determine their reward
       },
     choices: [32], //spacebar
     on_finish: function reward() {
-      jsPsych.data.addProperties({reward: foodReward})
+      jsPsych.data.addProperties({rewardType: "food", reward: foodReward})
     }
 }
 var choiceReward = {
@@ -917,7 +916,7 @@ var fpRewardScreen = {
       },
     choices: [32], //spacebar
     on_finish: function reward() {
-      jsPsych.data.addProperties({reward: foodReward})
+      jsPsych.data.addProperties({rewardType: "food", reward: foodReward})
     }
 }
 var fpReward = {
@@ -940,10 +939,10 @@ type: "html-keyboard-response",
               "<img id = 'img' style = 'width: 350px; height: 350px;'></img></div>" +
       "Press the spacebar to continue.",
       on_load: function rewardType() {
-        document.getElementById('price').textContent += num.toString(Math.round(auctionVal*100)/100);
+        document.getElementById('price').textContent += (Math.round(auctionVal*100)/100).toString();
         document.getElementById('wtp').textContent += rewardObj.rating;
         document.getElementById('img').src += foodReward;
-        window.moneyReward = num.toString(Math.round(buyDiff*100)/100);
+        window.moneyReward = (Math.round(buyDiff*100)/100).toString();
         if(buy == true) {
           document.getElementById('buy').textContent += "buy the item at that price and receive the $" + moneyReward + " leftover from your $4 budget.";
         } else {
@@ -952,7 +951,7 @@ type: "html-keyboard-response",
       },
     choices: [32], //spacebar
     on_finish: function reward() {
-      jsPsych.data.addProperties({reward: moneyReward})
+      jsPsych.data.addProperties({rewardType: "money", reward: moneyReward})
     }
     }
 var wtpReward = {
@@ -976,7 +975,7 @@ var success_check = {
 }
 
 var endofExp = function (survey_code) {
-  html = `Thank you for participating!  Here is your study code:  <b>${survey_code}</b>.  You should enter this code in the previous window.  You can now close this screen.
+  html = `Thank you for participating! You can now close this screen.
     </div>`;
   return html
 }
@@ -1002,7 +1001,7 @@ var on_close_callback = function () {
   jsPsych.data.addProperties({
     interaction: jsPsych.data.getInteractionData().json(),
     windowWidth: screen.width,
-    windowHight: screen.height,
+    windowHight: screen.height
   });
   var data = JSON.stringify(jsPsych.data.get().values());
   $.ajax({
@@ -1028,7 +1027,7 @@ var on_finish_callback = function () {
   jsPsych.data.addProperties({
     interaction: jsPsych.data.getInteractionData().json(),
     windowWidth: screen.width,
-    windowHight: screen.height
+    windowHight: screen.height,
   });
   var data = JSON.stringify(jsPsych.data.get().values());
   $.ajax({
@@ -1049,7 +1048,90 @@ var on_finish_callback = function () {
 }
 
 var trialcounter;
+var get_food_random_chance  = 10;
+var demographic_survey = {
+  type: 'survey-text',
+  on_start: function(){
+    document.body.style.cursor = 'auto'
+  },
+  questions: [
+    {prompt: "What is your gender?", rows: 2, columns:50 , required:true}, 
+    {prompt: "What is your age?", rows: 1, columns: 50, required:true},
+    {prompt: "What is your first language?", rows: 1, columns: 50, require: false}
+  ],
+  preamble: `<div>Thanks for completing our study!  Please answer the following questions and then press Continue. </div>`
+};
 
+
+var payment_choice = {
+  type: 'survey-multi-choice',
+  on_start: function(){
+    document.body.style.cursor = 'auto'
+  },
+  questions: [{
+      prompt: "How would you like to be paied?",
+      options: ["Venmo", "Paypal", "Zelle"],
+      required: true
+    }
+  ],
+  randomize_question_order: false
+}
+
+var payment_survey = {
+  type: 'survey-text',
+  on_start: function(){
+    document.body.style.cursor = 'auto'
+  },
+  questions: [
+    {prompt: "What is your name?", rows: 2, columns:50 , required:true}, 
+    {prompt: "What is the account name or email address associated with your Venmo/Zelle/Paypal account?", rows: 1, columns: 50, require: true},
+  ],
+  preamble: `<div> Please answer the following questions and then press Continue. </div>`
+};
+
+var collect_address_info = {
+  type: 'survey-text',
+  on_start: function(){
+    document.body.style.cursor = 'auto'
+  },
+  questions: [
+    {prompt: "Mailing address:  ", rows: 4, columns:50 , required:true}
+  ],
+  preamble: `<div>Congratulations! You have been randomly selected to receive a food item!  Please enter your address below and then press Continue to see what you have won.</div>`
+};
+
+var address_node = {
+  timeline: [collect_address_info]
+}
+
+var choices_node = {
+  timeline: [instructions_trials,
+    practice_choices,
+    instructions_choices,
+    choices],
+  conditional_function: function(){
+      if(ratings_good == 1){
+          return true;
+      } else {
+          return false;
+      }
+  }
+}
+
+var reward_node = {
+  timeline: [address_node,
+    post_choices,
+  choiceReward,
+fpReward,
+wtpReward],
+conditional_function: function(){
+  if(get_food_random_chance == 10 && ratings_good == 1){
+      return true;
+  } else {
+      return false;
+  }
+}
+}
 //////////////////////
 /** Run Experiment */
 /////////////////////
@@ -1088,18 +1170,15 @@ if (do_practice == 1) {
   function startExperiment() {
     jsPsych.init({
       timeline: [
-        start_exp_survey_trial,
+        //start_exp_survey_trial,
         fullscreen,
         instructions_Welcome,
         instructions_Ratings, ratings,
-        instructions_trials,
-        practice_choices,
-        instructions_choices,
-        choices,
-        post_choices,
-        choiceReward,
-        fpReward,
-        wtpReward,
+        choices_node,
+        demographic_survey,
+        payment_choice,
+        payment_survey,
+        reward_node,
         success_check
       ],
       on_trial_finish: function () {
