@@ -15,11 +15,11 @@
 /////////////////
 /** Constants **/
 /////////////////
-const ntrials = 15; //150 trials (in each phase)
+const ntrials = 150; //150 trials (in each phase)
 const npractice = 3; //3
 const do_practice = 0; //to test code
 const fixation_duration = 500; //half sec
-const nRatings = 10; //number of ratings (max 80)
+const nRatings = 80; //number of ratings (max 80)
 
 //date constants
 var TODAY = new Date();
