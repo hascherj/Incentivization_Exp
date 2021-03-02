@@ -15,7 +15,7 @@
 /////////////////
 /** Constants **/
 /////////////////
-const ntrials = 150; //150 trials (in each phase)
+const ntrials = 200; //200 trials 
 const npractice = 3; //3
 const do_practice = 0; //to test code
 const fixation_duration = 500; //half sec
@@ -458,8 +458,10 @@ var ratings = {
         //console.log(rating_order[rating_counter+1]);
       },
       on_finish: (data) => {
+        if (data.rating >= 0){
         foods_good.push(foods_to_rate[rating_order[rating_counter]]);
         foods_good[foods_good.length - 1].rating = data.rating;
+      };
         //Comment this part out
         /*
         if (foods_to_rate[rating_order[rating_counter]].food_type == "healthy") {
@@ -478,7 +480,7 @@ var ratings = {
           console.log(negative_rating_counter);
         };
 
-        if (negative_rating_counter > 30) {
+        if (negative_rating_counter > 59) { //They need to make at least 21 positive ratings to generate 200 distinct choice trials
           //closeFullscreen();
           //survey_code = makeSurveyCode('bad_ratings');
           //jsPsych.endExperiment(endofExp(survey_code));
