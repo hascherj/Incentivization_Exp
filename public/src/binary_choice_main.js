@@ -843,9 +843,9 @@ var post_choices = {
       window.rewardData = jsPsych.data.get().filter({ trial_type: 'binary-food-choice' }).last(ntrials).values(); //Pull all the choices (except practice)
       window.rewardObj = jsPsych.randomization.sampleWithoutReplacement(rewardData, 1)[0]; //Select a random choice trial
       if (parseFloat(rewardObj.stimulus1_rating) > parseFloat(rewardObj.stimulus2_rating)) {
-        window.foodReward = rewardObj.stimulus.stimulus1; //Gives string of food #
+        window.foodReward = rewardObj.stimulus1; //Gives string of food #
       } else {
-        window.foodReward = rewardObj.stimulus.stimulus2;
+        window.foodReward = rewardObj.stimulus2;
       }
     } else if (rewardTask == "rating") {
       window.rewardData = jsPsych.data.get().filter({ trial_type: 'rating-scale' }).values(); //Pull all the rating trials
