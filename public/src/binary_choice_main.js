@@ -1062,7 +1062,7 @@ var payment_choice = {
     document.body.style.cursor = 'auto'
   },
   questions: [{
-      prompt: "How would you like to be paied?",
+      prompt: "How would you like to be payed?",
       options: ["Venmo", "Paypal", "Zelle"],
       required: true
     }
