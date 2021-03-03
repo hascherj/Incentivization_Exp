@@ -15,11 +15,11 @@
 /////////////////
 /** Constants **/
 /////////////////
-const ntrials = 5; //200 trials 
+const ntrials = 200; //200 trials 
 const npractice = 3; //3
 const do_practice = 0; //to test code
 const fixation_duration = 500; //half sec
-const nRatings = 5; //number of ratings (max 80)
+const nRatings = 80; //number of ratings (max 80)
 
 //date constants
 var TODAY = new Date();
