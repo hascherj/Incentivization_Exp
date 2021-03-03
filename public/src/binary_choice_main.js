@@ -15,11 +15,11 @@
 /////////////////
 /** Constants **/
 /////////////////
-const ntrials = 200; //200 trials 
+const ntrials = 5; //200 trials 
 const npractice = 3; //3
 const do_practice = 0; //to test code
 const fixation_duration = 500; //half sec
-const nRatings = 80; //number of ratings (max 80)
+const nRatings = 5; //number of ratings (max 80)
 
 //date constants
 var TODAY = new Date();
@@ -817,12 +817,7 @@ var choices = {
 
 
 // REWARDS
-var reward_trial = {
-  reward_chosen: 0,
-  choice_type: "",
-  trial_number: "",
-  food_reward: ""
-}
+
 
 
 if (RatingCondition == "FP" || RatingCondition == "WTP") {
@@ -845,9 +840,9 @@ var post_choices = {
   },
   on_start: function (data) {
     if (rewardTask == "choice") {
-      window.rewardData = jsPsych.data.get().filter({ trial_type: 'binary-food-choice' }).values(); //Pull all the choices
+      window.rewardData = jsPsych.data.get().filter({ trial_type: 'binary-food-choice' }).last(ntrials).values(); //Pull all the choices (except practice)
       window.rewardObj = jsPsych.randomization.sampleWithoutReplacement(rewardData, 1)[0]; //Select a random choice trial
-      if (parseFloat(rewardObj.stimulus.stimulus1_rating) > parseFloat(rewardObj.stimulus.stimulus2_rating)) {
+      if (parseFloat(rewardObj.stimulus1_rating) > parseFloat(rewardObj.stimulus2_rating)) {
         window.foodReward = rewardObj.stimulus.stimulus1; //Gives string of food #
       } else {
         window.foodReward = rewardObj.stimulus.stimulus2;
@@ -882,7 +877,7 @@ var choiceRewardScreen = { //If their choices determine their reward
   type: "html-keyboard-response",
     stimulus: "The following food was chosen by you in a random round, and will be your reward for this experiment:" +
               "<div style = 'float: center;'>" +
-              "<img id = 'img' style = 'width: 350px; height: 350px;'></img></div>" +
+              "<img id = 'img' style = 'width: 350px; height: 250px;'></img></div>" +
       "Press the spacebar to continue.",
       on_load: function rewardType() {
         document.getElementById('img').src += foodReward;
@@ -907,7 +902,7 @@ var fpRewardScreen = {
   type: "html-keyboard-response",
     stimulus: "Two random foods were selected, and the following food was rated higher. Thus, it will be your reward for this experiment:" +
               "<div style = 'float: center;'>" +
-              "<img id = 'img' style = 'width: 350px; height: 350px;'></img></div>" +
+              "<img id = 'img' style = 'width: 350px; height: 250px;'></img></div>" +
       "Press the spacebar to continue.",
       on_load: function rewardType() {
         document.getElementById('img').src += foodReward;
@@ -930,11 +925,11 @@ var fpReward = {
 
 var wtpRewardScreen = { //If their WTP for a random food determines thier reward
 type: "html-keyboard-response",
-    stimulus: "<div id = price> The following food was randomly chosen to be auctioned off at a random price of $</div>" +
-              "<div id = wtp>Your reported willingness to pay for this food was:</div>" +
+    stimulus: "<div id = price> The following food was randomly chosen to be auctioned off at a random price of:  $</div>" +
+              "<div id = wtp>Your reported willingness to pay for this food was:  $</div>" +
               "<div id = buy>Therefore, you will </div>" +
               "<div style = 'float: center;'>" +
-              "<img id = 'img' style = 'width: 350px; height: 350px;'></img></div>" +
+              "<img id = 'img' style = 'width: 350px; height: 250pxpx;'></img></div>" +
       "Press the spacebar to continue.",
       on_load: function rewardType() {
         document.getElementById('price').textContent += (Math.round(auctionVal*100)/100).toString();

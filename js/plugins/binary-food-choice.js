@@ -65,10 +65,10 @@ jsPsych.plugins["binary-food-choice"] = (function () {
         
           on_Screen += '<div class="container-multi-choice">';
           on_Screen += '<div class="container-multi-choice-column" id= "multiattribute-choices-stimulus-left">';
-          on_Screen += `<div id="multiattribute-choices-stimulus-left " ><img height="auto" width="350px" src="${trial.stimulus.stimulus1}"/></div>`;
+          on_Screen += `<div id="multiattribute-choices-stimulus-left " ><img height="250px" width="350px" src="${trial.stimulus.stimulus1}"/></div>`;
           on_Screen += '</div>';
           on_Screen += '<div class="container-multi-choice-column" id= "multiattribute-choices-stimulus-right">';
-          on_Screen += `<div id="multiattribute-choices-stimulus-right " ><img height="auto" width="350px" src="${trial.stimulus.stimulus2}"/></div>`;
+          on_Screen += `<div id="multiattribute-choices-stimulus-right " ><img height="250px" width="350px" src="${trial.stimulus.stimulus2}"/></div>`;
           on_Screen += '</div>';
           on_Screen += '</div>';
   
@@ -136,22 +136,16 @@ jsPsych.plugins["binary-food-choice"] = (function () {
           setTimeoutHandlers.push(response_timer);
         }
       };
-  if (response.key == 70) {
-    var choseLeft = 1;
-  } else if (response.key == 74) {
-    var choseLeft = 0;
-  }
       var end_trial = function (timeout) {
         // data saving
         var trial_data = {
           "stimulus1": trial.stimulus.stimulus1,
           "stimulus2": trial.stimulus.stimulus2,
-          "stimulus1Rat": trial.stimulus.stimulus1_rating,
-          "stimulus2Rat": trial.stimulus.stimulus2_rating,
+          "stimulus1_rating": trial.stimulus.stimulus1_rating,
+          "stimulus2_rating": trial.stimulus.stimulus2_rating,
           "timeout": timeout,
           "rt": response.rt,
           "key_press": response.key,
-          "choseLeft": choseLeft,
           "choices": trial.choices,
           "trial_number": trial.trial_number
         };
