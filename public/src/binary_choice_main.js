@@ -15,11 +15,11 @@
 /////////////////
 /** Constants **/
 /////////////////
-const ntrials = 200; //200 trials 
+const ntrials = 100; //200 trials 
 const npractice = 3; //3
 const do_practice = 0; //to test code
 const fixation_duration = 500; //half sec
-const nRatings = 80; //number of ratings (max 80)
+const nRatings = 40; //number of ratings (max 80)
 
 //date constants
 var TODAY = new Date();
@@ -480,7 +480,7 @@ var ratings = {
           console.log(negative_rating_counter);
         };
 
-        if (negative_rating_counter > 59) { //They need to make at least 21 positive ratings to generate 200 distinct choice trials
+        if (negative_rating_counter > 25) { //59 by default: They need to make at least 21 positive ratings to generate 200 distinct choice trials
           //closeFullscreen();
           //survey_code = makeSurveyCode('bad_ratings');
           //jsPsych.endExperiment(endofExp(survey_code));
