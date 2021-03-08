@@ -935,10 +935,11 @@ type: "html-keyboard-response",
         document.getElementById('price').textContent += (Math.round(auctionVal*100)/100).toString();
         document.getElementById('wtp').textContent += rewardObj.rating;
         document.getElementById('img').src += foodReward;
-        window.moneyReward = (Math.round(buyDiff*100)/100).toString();
         if(buy == true) {
+          window.moneyReward = (Math.round(buyDiff*100)/100).toString();
           document.getElementById('buy').textContent += "buy the item at that price and receive the $" + moneyReward + " leftover from your $4 budget.";
         } else {
+          window.moneyReward = "4.00";
           document.getElementById('buy').textContent += "not buy the item and keep the entirety of your $4 budget.";
         }
       },
