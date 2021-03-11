@@ -15,11 +15,11 @@
 /////////////////
 /** Constants **/
 /////////////////
-const ntrials = 100; //200 trials 
+const ntrials = 200; //200 trials 
 const npractice = 3; //3
 const do_practice = 0; //to test code
 const fixation_duration = 500; //half sec
-const nRatings = 40; //number of ratings (max 80)
+const nRatings = 80; //number of ratings (max 80)
 
 //date constants
 var TODAY = new Date();
@@ -1042,7 +1042,7 @@ var on_finish_callback = function () {
 }
 
 var trialcounter;
-var get_food_random_chance  = 10;
+var get_food_random_chance  = getRandomInt(1, 10);
 var demographic_survey = {
   type: 'survey-text',
   on_start: function(){
@@ -1051,7 +1051,7 @@ var demographic_survey = {
   questions: [
     {prompt: "What is your gender?", rows: 2, columns:50 , required:true}, 
     {prompt: "What is your age?", rows: 1, columns: 50, required:true},
-    {prompt: "What is your first language?", rows: 1, columns: 50, require: false}
+    {prompt: "What is your first language?", rows: 1, columns: 50, required: false}
   ],
   preamble: `<div>Thanks for completing our study!  Please answer the following questions and then press Continue. </div>`
 };
