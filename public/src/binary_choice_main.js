@@ -480,7 +480,7 @@ var ratings = {
           console.log(negative_rating_counter);
         };
 
-        if (negative_rating_counter > 25) { //59 by default: They need to make at least 21 positive ratings to generate 200 distinct choice trials
+        if (negative_rating_counter > 59) { //59 by default: They need to make at least 21 positive ratings to generate 200 distinct choice trials
           //closeFullscreen();
           //survey_code = makeSurveyCode('bad_ratings');
           //jsPsych.endExperiment(endofExp(survey_code));
