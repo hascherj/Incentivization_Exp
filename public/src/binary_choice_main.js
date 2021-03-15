@@ -296,8 +296,8 @@ var instructions_Welcome = {
     screen_id: "welcome"
   },
   type: 'instructions',
-  pages: ["In this study, you will be making a series of decisions about foods. At the end of the study you may be randomly<br/>" +
-    "selected to receive a shipment of food based on one of your choices. One in ten participants will be selected.<br/><br/>" +
+  pages: ["In this study, you will be making a series of decisions about foods. At the end of the study you will receive $6 and <br/>" +
+    "you may be randomly selected to receive a shipment of food based on one of your choices. One in ten participants will be selected.<br/><br/>" +
     "There will be multiple parts to the study, and you will receive instructions before each new part.<br/><br/> " +
     "Please press the spacebar to continue."],
   allow_backward: false,
@@ -321,7 +321,7 @@ if (RatingCondition == "BR") {
       "Therefore, it is therefore important to try to be as accurate as possible throughout the entire study.<br/>" +
       "Press the spacebar to continue.",
 
-    "We are asking you to rate each food based on how much you would like to eat it.<br/><br/>" +
+    "We are asking you to rate each food based on how much you would like to receive it.<br/><br/>" +
     "Rate each food on a scale from 0 to 4.<br/><br/>" +
     "4 means that you would really like to eat it<br/>" +
     "0 means you would neither like nor dislike to eat it.<br/>" +
@@ -341,7 +341,7 @@ if (RatingCondition == "BR") {
     },
     type: "instructions",
     pages: ["First, you will make decisions about a series of foods one by one.<br/>" +
-      "Then, in the second part of the study, you will be making choices between pairs of foods.<br/>At the end of the study " +
+      "Then, in the second part of the study, you will be making choices between pairs of foods. At the end of the study</br>" +
       "you may receive a food based on one of your choices in the study, selected at random.<br/>" +
       "Therefore, it is important to try to be as accurate as possible throughout the entire study.<br/>" +
       "Press the spacebar to continue.",
@@ -355,6 +355,8 @@ if (RatingCondition == "BR") {
     "If your bid is less than the random price, you will NOT get the food, and will not have to pay anything.</br>" +
     "These rules ensure that it is in your best interest to bid your true willingness to pay for each food,</br>" +
     "since you can’t affect the price of the food, you can only decide what prices are acceptable to you.</br>" +
+    "To help cover this potential cost, you will receive an additional $4 if this task is selected for payment.</br>" +
+    "In that case you could earn between $6 and $10, depending on your bid and on the price.</br>" +
     "Press the spacebar to continue.",
 
     "Use the mouse to click on the scale to indicate your rating.<br/>" +
