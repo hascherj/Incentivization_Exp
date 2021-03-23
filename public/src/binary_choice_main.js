@@ -318,7 +318,7 @@ if (RatingCondition == "BR") {
     pages: ["First, you will make decisions about a series of foods one by one.<br/>" +
       "Then, in the second part of the study, you will be making choices between pairs of foods.<br/>At the end of the study " +
       "you may receive a food based on your choices from the second part of the study, selected at random.<br/>" +
-      "Therefore, it is therefore important to try to be as accurate as possible throughout the entire study.<br/>" +
+      "Therefore, it is important to try to be as accurate as possible throughout the entire study.<br/>" +
       "Press the spacebar to continue.",
 
     "We are asking you to rate each food based on how much you would like to receive it.<br/><br/>" +
