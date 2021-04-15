@@ -209,7 +209,8 @@ var healthy_first = jsPsych.randomization.sampleWithoutReplacement([0, 1], 1);
 /** Add Subject Info **/
 ////////////////////////
 var RatingConds = ["BR", "WTP", "FP"];
-var RatingCondition = RatingConds[Math.floor(Math.random() * RatingConds.length)];
+//var RatingCondition = RatingConds[Math.floor(Math.random() * RatingConds.length)];
+var RatingCondition = "FP";
 
 jsPsych.data.addProperties({
   subject: subject_id,
