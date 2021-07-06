@@ -298,7 +298,7 @@ var instructions_Welcome = {
   },
   type: 'instructions',
   pages: ["In this study, you will be making a series of decisions about foods. At the end of the study you will receive $6 and <br/>" +
-    "you may be randomly selected to receive a shipment of food based on one of your choices. One in ten participants will be selected.<br/><br/>" +
+    "you may be randomly selected to receive money or a shipment of food based on one of your choices. One in ten participants will be selected.<br/><br/>" +
     "There will be multiple parts to the study, and you will receive instructions before each new part.<br/><br/> " +
     "Please press the spacebar to continue."],
   allow_backward: false,
@@ -355,7 +355,7 @@ if (RatingCondition == "BR") {
     "If your bid is greater than or equal to the random price, you will get the food for that price.</br>" +
     "If your bid is less than the random price, you will NOT get the food, and will not have to pay anything.</br>" +
     "These rules ensure that it is in your best interest to bid your true willingness to pay for each food,</br>" +
-    "since you can’t affect the price of the food, you can only decide what prices are acceptable to you.</br>" +
+    "since you cannot affect the price of the food, you can only decide what prices are acceptable to you.</br>" +
     "To help cover this potential cost, you will receive an additional $4 if this task is selected for payment.</br>" +
     "In that case you could earn between $6 and $10, depending on your bid and on the price.</br>" +
     "Press the spacebar to continue.",
@@ -387,7 +387,7 @@ if (RatingCondition == "BR") {
 
     "If this task is randomly selected to determine your reward, a random pair of these foods</br>" +
     "will be selected and you will receive the food that you rated higher.  If there is a tie, one</br>" +
-    'of the foods will be chosen at random. If you selected “Would Not Eat” for both foods, you will not receive any food.',
+    'of the foods will be chosen at random. If you selected "Would Not Eat" for both foods, you will not receive any food.',
 
     "Use the mouse to click on the scale to indicate your rating.<br/>" +
     "You will automatically progress to the next food.<br/><br/>" +
@@ -1138,7 +1138,7 @@ if (do_practice == 1) {
       timeline: [
         fullscreen,
         instructions_Ratings,
-        ratings,
+        
         instructions_trials,
         instructions_choices,
         choices,
